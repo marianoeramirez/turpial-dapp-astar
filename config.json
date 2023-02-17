@@ -1,0 +1,7 @@
+{
+  "projectFiles": [
+    "contracts/turpial/*"
+  ],
+  "artifactsPath": "artifacts",
+  "typechainGeneratedPath": "typedContract"
+}
