@@ -7,8 +7,7 @@ export const gasLimit = 3000n * 1000000n;
 // if null is passed, unlimited balance can be used
 export const storageDepositLimit = null;
 
-export const ALICE_ADDRESS = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY';
-export const CONTRACT_ADDRESS = "5Gef3bKb12gL4Ju8znJVSpbv1FaYvTvCNF7kViaivn2qUcVC";
-export const URL_PROVIDER = 'ws://127.0.0.1:9944';
+export const CONTRACT_ADDRESS = "WjYpkEArG1DQMbTKbyvfHL8N7SJuEk756fP7TowVLw5YJjb";
+export const URL_PROVIDER = 'wss://rpc.shibuya.astar.network/';
 
-export default {proofSize, gasLimit, storageDepositLimit, refTime, ALICE_ADDRESS, CONTRACT_ADDRESS, URL_PROVIDER};
+export default {proofSize, gasLimit, storageDepositLimit, refTime, CONTRACT_ADDRESS, URL_PROVIDER};

@@ -2,6 +2,7 @@
   "name": "Turpial",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marianoeramirez.github.io/turpial-dapp-astar",
   "dependencies": {
     "@astar-network/astar-api": "^0.1.5-7",
     "@emotion/react": "^11.10.5",

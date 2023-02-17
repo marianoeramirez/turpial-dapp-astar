@@ -16,8 +16,6 @@ import ListAdversiments from './components/ListAdversiments';
 
 import * as consts from './consts';
 
-var wsProvider = new WsProvider(consts.URL_PROVIDER);
-
 
 function App() {
   const [apiState, setApi] = useState();
@@ -59,6 +57,7 @@ function App() {
   }
 
    useEffect(() => {
+    var wsProvider = new WsProvider(consts.URL_PROVIDER);
       ApiPromise.create(options({ wsProvider })).then(async (api) => {
           await api.isReady;
           setApi(api);

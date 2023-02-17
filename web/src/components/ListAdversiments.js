@@ -94,11 +94,11 @@ var send_release_money = async (api, account, extensions, id) => {
 
 };
 
-var get_number_tokens = async (api) => {
+var get_number_tokens = async (api, account) => {
       var contract = get_contract(api);
 
       const { gasRequired, result, output } = await contract.query.lastToken(
-        consts.ALICE_ADDRESS,
+        account,
         {
           dest:consts.CONTRACT_ADDRESS,
           gasLimit: api.registry.createType('WeightV2', {
@@ -121,11 +121,11 @@ var get_number_tokens = async (api) => {
 
 
 
-var get_row_information= async (api, row, method) => {
+var get_row_information= async (api, account, row, method) => {
       var contract = get_contract(api);
 
       const { gasRequired, result, output } = await contract.query[method](
-        consts.ALICE_ADDRESS,
+        account,
         {
           dest:consts.CONTRACT_ADDRESS,
           gasLimit: api.registry.createType('WeightV2', {
@@ -149,23 +149,26 @@ var get_row_information= async (api, row, method) => {
 function ListAdversiments({ api, account, extensions }) {
   const [is_buy, setFilterBuy] = useState('true');
   const [result, setResult] = useState([]);
-  useEffect(() => {
-    get_number_tokens(api).then(async (tokens) =>{
+  function reLoadContracts(){
+    get_number_tokens(api, account).then(async (tokens) =>{
       var list_results = [];
       for(var x=1; x <=tokens; x++ ){
-        var finalized = await get_row_information(api, x, 'getFinalized');
+        var finalized = await get_row_information(api, account, x, 'getFinalized');
         // if(finalized == false)
         //   continue
         var id = x;
-        var balance = await get_row_information(api, x, 'getBalance');
-        var rate = await get_row_information(api, x, 'getRate');
-        var is_buy = await get_row_information(api, x, 'getIsBuy');
+        var balance = await get_row_information(api,account,  x, 'getBalance');
+        var rate = await get_row_information(api,account, x, 'getRate');
+        var is_buy = await get_row_information(api,account, x, 'getIsBuy');
         list_results.push({id:id,
           balance: balance.toHuman()['Ok'], rate: rate.toHuman(), 
           is_buy:is_buy.toHuman(), finalized:finalized.toHuman()})
       }
       setResult(list_results);
     })
+  }
+  useEffect(() => {
+    reLoadContracts();
   },[]);
   function start_commerce(row) {
     send_start_commerce(api, account, extensions, row.id)
@@ -188,6 +191,7 @@ function ListAdversiments({ api, account, extensions }) {
                 <ToggleButton value="true">Buy</ToggleButton>
                 <ToggleButton value="false">Sell</ToggleButton>
           </ToggleButtonGroup>
+          <Button onClick={() => reLoadContracts()}>Reload</Button>
 
           <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
