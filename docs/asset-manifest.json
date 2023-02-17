@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/turpial-dapp-astar/static/js/main.468b5359.js",
+    "static/js/787.59e18a08.chunk.js": "/turpial-dapp-astar/static/js/787.59e18a08.chunk.js",
+    "index.html": "/turpial-dapp-astar/index.html",
+    "main.468b5359.js.map": "/turpial-dapp-astar/static/js/main.468b5359.js.map",
+    "787.59e18a08.chunk.js.map": "/turpial-dapp-astar/static/js/787.59e18a08.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.468b5359.js"
+  ]
+}
